@@ -38,7 +38,7 @@ import java.util.Map;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
