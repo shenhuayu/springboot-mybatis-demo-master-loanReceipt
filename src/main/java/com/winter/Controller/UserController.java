@@ -105,6 +105,7 @@ public class UserController {
         loanReceipt.setSumremainprincipal(loanReceiptInput.getLoanAmt());
         loanReceipt.setLoansettlesign(false);
         userService.insertLoanReceipt(loanReceipt);
+        loanReceiptInput.setLoanreceiptno(loanReceipt.getLoanreceiptno());
         modelAndView.addObject("loanReceiptInput",loanReceiptInput);
         modelAndView.setViewName("loanReceiptSuccess");
         return modelAndView;

@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>输入还款信息</title>
+    <title>单笔借据明细查询</title>
 </head>
 <body>
+<h3>输入借据号查询还款明细</h3>
 <div>
     <form method="post" th:object="${repayLoanInput}" th:action="@{/user/loanReceiptDetailShow}">
         <p>贷款借据号:<input type="text" th:field="*{loanReceiptNo}" id="loanReceiptNo" name="loanReceiptNo"/></p>

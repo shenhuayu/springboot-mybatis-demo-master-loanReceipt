@@ -5,6 +5,7 @@
     <title>输入还款信息</title>
 </head>
 <body>
+<h3>输入单笔借据的还款信息</h3>
 <div>
     <form method="post" th:object="${repayLoanInput}" th:action="@{/user/repayLoanRegister}">
         <p>贷款借据号:<input type="text" th:field="*{loanReceiptNo}" id="loanReceiptNo" name="loanReceiptNo"/></p>

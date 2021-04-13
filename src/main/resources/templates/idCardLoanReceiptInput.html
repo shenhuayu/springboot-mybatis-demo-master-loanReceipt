@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>输入还款信息</title>
+    <title>查询该身份证名下所有借据号</title>
 </head>
 <body>
+<h3>根据身份证查询该身份证名下所有借据号</h3>
 <div>
     <form method="post" th:object="${loanReceiptInput}" th:action="@{/user/idCardLoanReceiptShow}">
         <p>身份证号:<input type="text" th:field="*{idcard}" id="idcard" name="idcard"/></p>

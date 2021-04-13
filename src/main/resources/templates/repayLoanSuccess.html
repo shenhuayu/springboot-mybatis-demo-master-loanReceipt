@@ -6,17 +6,45 @@
     <title>本次还款后该笔贷款的当前情况</title>
 </head>
 <body>
-<tr>贷款借据号:<td th:text="${loanReceipt.loanreceiptno}"></td></tr><br/>
-<tr>贷款序号:<td th:text="${loanReceipt.loanseq}"></td></tr><br/>
-<tr>身份证:<td th:text="${loanReceipt.idcard}"></td></tr><br/>
-<tr>借款日期:<td th:text="${loanReceipt.loandate}"></td></tr><br/>
-<tr>结清日期:<td th:text="${loanReceipt.cleardate}"></td></tr><br/>
-<tr>贷款日利率:<td th:text="${loanReceipt.dailyinterestrate}"></td></tr><br/>
-<tr>剩余本金总额:<td th:text="${loanReceipt.sumremainprincipal}"></td></tr><br/>
-<tr>尝还本金总额:<td th:text="${loanReceipt.sumrepayprincipal}"></td></tr><br/>
-<tr>应还利息总额:<td th:text="${loanReceipt.suminterestpayment}"></td></tr><br/>
-<tr>已还利息总额:<td th:text="${loanReceipt.suminterestpayed}"></td></tr><br/>
-<tr>未还利息总额:<td th:text="${loanReceipt.suminterestnotpay}"></td></tr><br/>
-<tr>贷款结清标志:<td th:text="${loanReceipt.loansettlesign}"></td></tr><br/>
+<h3>本次还款后该笔贷款的当前情况</h3>
+
+<div class="table-responsive">
+    <table class="table table-striped table-sm"  border="1" width="1400">
+        <thead>
+        <tr>
+            <th>贷款借据号</th>
+            <th>贷款序号</th>
+            <th>身份证</th>
+            <th>借款日期</th>
+<!--            <th>结清日期</th>-->
+            <th>贷款日利率</th>
+            <th>剩余本金总额</th>
+            <th>尝还本金总额</th>
+            <th>应还利息总额</th>
+            <th>已还利息总额</th>
+            <th>未还利息总额</th>
+            <th>贷款结清标志</th>
+        </tr>
+        </thead>
+        <tbody>
+            <td th:text="${loanReceipt.loanreceiptno}"></td>
+            <td th:text="${loanReceipt.loanseq}"></td>
+            <td th:text="${loanReceipt.idcard}"></td>
+            <td th:text="${#dates.format(loanReceipt.loandate, 'yyyyMMdd')}"></td>
+<!--            <td th:text="${loanReceipt.cleardate}==null?${#dates.format(loanReceipt.cleardate, 'yyyyMMdd')}:''"></td>-->
+            <td th:text="${#numbers.formatDecimal(loanReceipt.dailyinterestrate, 1, 5)}"></td>
+<!--            <td th:text="${loanReceipt.sumremainprincipal}"></td>-->
+            <td th:text="${#numbers.formatDecimal(loanReceipt.sumremainprincipal, 1,2)}"></td>
+<!--            <td th:text="${loanReceipt.sumrepayprincipal}"></td>-->
+            <td th:text="${#numbers.formatDecimal(loanReceipt.sumrepayprincipal, 1,2)}"></td>
+<!--            <td th:text="${loanReceipt.suminterestpayment}"></td>-->
+            <td th:text="${#numbers.formatDecimal(loanReceipt.suminterestpayment, 1,2)}"></td>
+<!--            <td th:text="${loanReceipt.suminterestpayed}"></td>-->
+            <td th:text="${#numbers.formatDecimal(loanReceipt.suminterestpayed, 1,2)}"></td>
+            <td th:text="${#numbers.formatDecimal(loanReceipt.suminterestnotpay, 1,2)}"></td>
+            <td th:text="${loanReceipt.loansettlesign}==false?'未结清':'结清' "></td>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

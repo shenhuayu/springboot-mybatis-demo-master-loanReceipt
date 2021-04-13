@@ -10,6 +10,7 @@ import java.util.Date;
  ***/
 @Data
 public class LoanReceiptInput {
+    private String loanreceiptno;//贷款借据号
     private String idcard;//身份证
     private String loandate;//借款日期
     private Double loanAmt;//借款金额

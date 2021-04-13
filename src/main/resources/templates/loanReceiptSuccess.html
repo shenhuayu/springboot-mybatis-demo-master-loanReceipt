@@ -6,9 +6,26 @@
     <title>显示贷款输入结果</title>
 </head>
 <body>
-<tr>身份证:<td th:text="${loanReceiptInput.idcard}"></td></tr><br/>
-<tr>借款日期:<td th:text="${loanReceiptInput.loandate}"></td></tr><br/>
-<tr>借款金额:<td th:text="${loanReceiptInput.loanAmt}"></td></tr><br/>
-<tr>贷款日利率:<td th:text="${loanReceiptInput.loanInterest}"></td></tr><br/>
+<h3>显示贷款输入结果</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm"  border="1" width="360">
+        <thead>
+        <tr>
+            <th>贷款借据号</th>
+            <th>身份证</th>
+            <th>借款日期</th>
+            <th>借款金额</th>
+            <th>贷款日利率</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td th:text="${loanReceiptInput.loanreceiptno}"></td>
+        <td th:text="${loanReceiptInput.idcard}"></td>
+        <td th:text="${loanReceiptInput.loandate}"></td>
+        <td th:text="${loanReceiptInput.loanAmt}"></td>
+        <td th:text="${#numbers.formatDecimal(loanReceiptInput.loanInterest, 1, 5)}"></td>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

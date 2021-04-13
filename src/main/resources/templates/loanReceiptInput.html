@@ -5,6 +5,7 @@
     <title>输入贷款信息</title>
 </head>
 <body>
+<h3>输入贷款信息</h3>
 <div>
     <form method="post" th:object="${loanReceiptInput}" th:action="@{/user/loanReceiptRegister}">
         <p>身份证:<input type="text" th:field="*{idcard}" id="idcard" name="idcard"/></p>
