@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>显示还款明细记录</title>
+</head>
+<body>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>借款日期</th>
+            <th>还款日期</th>
+            <th>计息天数</th>
+            <th>借款额</th>
+            <th>本金偿还</th>
+            <th>利息生成</th>
+            <th>利息偿还</th>
+            <th>未还利息</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="loanReceipt:${loanReceiptDetailList}">
+            <td th:text="${#dates.format(loanReceipt.loandate, 'yyyyMMdd')}"></td>
+            <td th:text="${#dates.format(loanReceipt.repaydate, 'yyyyMMdd')}"></td>
+            <td th:text="${loanReceipt.interestdays}"></td>
+            <td th:text="${loanReceipt.currentremainprincipal}"></td>
+            <td th:text="${loanReceipt.currentrepayprincipal}"></td>
+            <td th:text="${loanReceipt.currentinterestpayment}"></td>
+            <td th:text="${loanReceipt.currentinterestpayed}"></td>
+            <td th:text="${loanReceipt.currentinterestnotpay}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>输入还款信息</title>
+</head>
+<body>
+<div>
+    <form method="post" th:object="${repayLoanInput}" th:action="@{/user/repayLoanRegister}">
+        <p>贷款借据号:<input type="text" th:field="*{loanReceiptNo}" id="loanReceiptNo" name="loanReceiptNo"/></p>
+        <p>还款日期:<input type="text" th:field="*{repayDate}" id="repayDate" name="repayDate"/></p>
+        <p>本次还款本金:<input type="text" th:field="*{repayLoanAmount}" id="repayLoanAmount" name="repayLoanAmount"/></p>
+        <p>本次还款利息:<input type="text" th:field="*{repayInterest}" id="repayInterest" name="repayInterest"/></p>
+        <p><input type="submit" value="提交"/></p>
+    </form>
+</div>
+</body>
+</html>

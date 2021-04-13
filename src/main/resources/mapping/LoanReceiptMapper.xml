@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winter.mapper.LoanReceiptMapper">
+  <resultMap id="BaseResultMap" type="com.winter.model.LoanReceipt">
+    <id column="loanReceiptNo" jdbcType="VARCHAR" property="loanreceiptno" />
+    <result column="loanSeq" jdbcType="VARCHAR" property="loanseq" />
+    <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+    <result column="loanDate" jdbcType="DATE" property="loandate" />
+    <result column="clearDate" jdbcType="DATE" property="cleardate" />
+    <result column="dailyInterestRate" jdbcType="DECIMAL" property="dailyinterestrate" />
+    <result column="sumRemainPrincipal" jdbcType="DECIMAL" property="sumremainprincipal" />
+    <result column="sumRepayPrincipal" jdbcType="DECIMAL" property="sumrepayprincipal" />
+    <result column="sumInterestPayment" jdbcType="DECIMAL" property="suminterestpayment" />
+    <result column="sumInterestPayed" jdbcType="DECIMAL" property="suminterestpayed" />
+    <result column="sumInterestNotPay" jdbcType="DECIMAL" property="suminterestnotpay" />
+    <result column="loanSettleSign" jdbcType="BIT" property="loansettlesign" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    loanReceiptNo, loanSeq, idCard, loanDate, clearDate, dailyInterestRate, sumRemainPrincipal, 
+    sumRepayPrincipal, sumInterestPayment, sumInterestPayed, sumInterestNotPay, loanSettleSign
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loanreceipt
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </select>
+  <select id="selectLoanSeq" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_loanreceipt
+    <where>
+      <if test="idcard != null and idcard != '' " >
+        idcard = #{idcard,jdbcType=VARCHAR}
+      </if>
+      <if test="loandate != null and loandate != '' " >
+        and loandate = #{loandate,jdbcType=DATE}
+      </if>
+    </where>
+    order by loanSeq desc
+    limit 1
+  </select>
+  <select id="selectLoanByIdCard" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_loanreceipt
+    where idcard = #{idcard,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_loanreceipt
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.winter.model.LoanReceipt">
+    insert into t_loanreceipt (loanReceiptNo, loanSeq, idCard, 
+      loanDate, clearDate, dailyInterestRate, 
+      sumRemainPrincipal, sumRepayPrincipal, 
+      sumInterestPayment, sumInterestPayed, sumInterestNotPay, 
+      loanSettleSign)
+    values (#{loanreceiptno,jdbcType=VARCHAR}, #{loanseq,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{loandate,jdbcType=DATE}, #{cleardate,jdbcType=DATE}, #{dailyinterestrate,jdbcType=DECIMAL}, 
+      #{sumremainprincipal,jdbcType=DECIMAL}, #{sumrepayprincipal,jdbcType=DECIMAL}, 
+      #{suminterestpayment,jdbcType=DECIMAL}, #{suminterestpayed,jdbcType=DECIMAL}, #{suminterestnotpay,jdbcType=DECIMAL}, 
+      #{loansettlesign,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.winter.model.LoanReceipt">
+    insert into t_loanreceipt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanreceiptno != null">
+        loanReceiptNo,
+      </if>
+      <if test="loanseq != null">
+        loanSeq,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+      <if test="loandate != null">
+        loanDate,
+      </if>
+      <if test="cleardate != null">
+        clearDate,
+      </if>
+      <if test="dailyinterestrate != null">
+        dailyInterestRate,
+      </if>
+      <if test="sumremainprincipal != null">
+        sumRemainPrincipal,
+      </if>
+      <if test="sumrepayprincipal != null">
+        sumRepayPrincipal,
+      </if>
+      <if test="suminterestpayment != null">
+        sumInterestPayment,
+      </if>
+      <if test="suminterestpayed != null">
+        sumInterestPayed,
+      </if>
+      <if test="suminterestnotpay != null">
+        sumInterestNotPay,
+      </if>
+      <if test="loansettlesign != null">
+        loanSettleSign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanreceiptno != null">
+        #{loanreceiptno,jdbcType=VARCHAR},
+      </if>
+      <if test="loanseq != null">
+        #{loanseq,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="loandate != null">
+        #{loandate,jdbcType=DATE},
+      </if>
+      <if test="cleardate != null">
+        #{cleardate,jdbcType=DATE},
+      </if>
+      <if test="dailyinterestrate != null">
+        #{dailyinterestrate,jdbcType=DECIMAL},
+      </if>
+      <if test="sumremainprincipal != null">
+        #{sumremainprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="sumrepayprincipal != null">
+        #{sumrepayprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="suminterestpayment != null">
+        #{suminterestpayment,jdbcType=DECIMAL},
+      </if>
+      <if test="suminterestpayed != null">
+        #{suminterestpayed,jdbcType=DECIMAL},
+      </if>
+      <if test="suminterestnotpay != null">
+        #{suminterestnotpay,jdbcType=DECIMAL},
+      </if>
+      <if test="loansettlesign != null">
+        #{loansettlesign,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winter.model.LoanReceipt">
+    update t_loanreceipt
+    <set>
+      <if test="loanseq != null">
+        loanSeq = #{loanseq,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="loandate != null">
+        loanDate = #{loandate,jdbcType=DATE},
+      </if>
+      <if test="cleardate != null">
+        clearDate = #{cleardate,jdbcType=DATE},
+      </if>
+      <if test="dailyinterestrate != null">
+        dailyInterestRate = #{dailyinterestrate,jdbcType=DECIMAL},
+      </if>
+      <if test="sumremainprincipal != null">
+        sumRemainPrincipal = #{sumremainprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="sumrepayprincipal != null">
+        sumRepayPrincipal = #{sumrepayprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="suminterestpayment != null">
+        sumInterestPayment = #{suminterestpayment,jdbcType=DECIMAL},
+      </if>
+      <if test="suminterestpayed != null">
+        sumInterestPayed = #{suminterestpayed,jdbcType=DECIMAL},
+      </if>
+      <if test="suminterestnotpay != null">
+        sumInterestNotPay = #{suminterestnotpay,jdbcType=DECIMAL},
+      </if>
+      <if test="loansettlesign != null">
+        loanSettleSign = #{loansettlesign,jdbcType=BIT},
+      </if>
+    </set>
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winter.model.LoanReceipt">
+    update t_loanreceipt
+    set loanSeq = #{loanseq,jdbcType=VARCHAR},
+      idCard = #{idcard,jdbcType=VARCHAR},
+      loanDate = #{loandate,jdbcType=DATE},
+      clearDate = #{cleardate,jdbcType=DATE},
+      dailyInterestRate = #{dailyinterestrate,jdbcType=DECIMAL},
+      sumRemainPrincipal = #{sumremainprincipal,jdbcType=DECIMAL},
+      sumRepayPrincipal = #{sumrepayprincipal,jdbcType=DECIMAL},
+      sumInterestPayment = #{suminterestpayment,jdbcType=DECIMAL},
+      sumInterestPayed = #{suminterestpayed,jdbcType=DECIMAL},
+      sumInterestNotPay = #{suminterestnotpay,jdbcType=DECIMAL},
+      loanSettleSign = #{loansettlesign,jdbcType=BIT}
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </update>
+</mapper>

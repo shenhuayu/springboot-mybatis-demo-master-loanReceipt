@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>显示该身份证名下所有借据</title>
+</head>
+<body>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>身份证</th>
+            <th>贷款借据号</th>
+            <th>借款日期</th>
+            <th>贷款日利率</th>
+            <th>剩余本金总额</th>
+            <th>尝还本金总额</th>
+            <th>应还利息总额</th>
+            <th>已还利息总额</th>
+            <th>未还利息总额</th>
+            <th>贷款结清标志</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="loanReceipt:${loanReceiptList}">
+            <td th:text="${loanReceipt.idcard}"></td>
+            <td th:text="${loanReceipt.loanreceiptno}"></td>
+            <td th:text="${#dates.format(loanReceipt.loandate, 'yyyyMMdd')}"></td>
+            <td th:text="${#numbers.formatDecimal(loanReceipt.dailyinterestrate, 1, 5)}"></td>
+            <td th:text="${loanReceipt.sumremainprincipal}"></td>
+            <td th:text="${loanReceipt.sumrepayprincipal}"></td>
+            <td th:text="${loanReceipt.suminterestpayment}"></td>
+            <td th:text="${loanReceipt.suminterestpayed}"></td>
+            <td th:text="${loanReceipt.suminterestnotpay}"></td>
+            <td th:text="${loanReceipt.loansettlesign}==0?'未结清':'结清' "></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

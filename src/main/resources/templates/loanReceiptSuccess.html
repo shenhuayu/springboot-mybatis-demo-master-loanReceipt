@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>显示贷款输入结果</title>
+</head>
+<body>
+<tr>身份证:<td th:text="${loanReceiptInput.idcard}"></td></tr><br/>
+<tr>借款日期:<td th:text="${loanReceiptInput.loandate}"></td></tr><br/>
+<tr>借款金额:<td th:text="${loanReceiptInput.loanAmt}"></td></tr><br/>
+<tr>贷款日利率:<td th:text="${loanReceiptInput.loanInterest}"></td></tr><br/>
+</body>
+</html>

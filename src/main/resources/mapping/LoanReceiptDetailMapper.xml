@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winter.mapper.LoanReceiptDetailMapper">
+  <resultMap id="BaseResultMap" type="com.winter.model.LoanReceiptDetail">
+    <id column="loanReceiptNo" jdbcType="VARCHAR" property="loanreceiptno" />
+    <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+    <result column="loanDate" jdbcType="DATE" property="loandate" />
+    <result column="repayDate" jdbcType="DATE" property="repaydate" />
+    <result column="interestDays" jdbcType="INTEGER" property="interestdays" />
+    <result column="repayMentPeriod" jdbcType="INTEGER" property="repaymentperiod" />
+    <result column="currentRemainPrincipal" jdbcType="DECIMAL" property="currentremainprincipal" />
+    <result column="currentRepayPrincipal" jdbcType="DECIMAL" property="currentrepayprincipal" />
+    <result column="currentInterestPayment" jdbcType="DECIMAL" property="currentinterestpayment" />
+    <result column="currentInterestPayed" jdbcType="DECIMAL" property="currentinterestpayed" />
+    <result column="currentInterestNotPay" jdbcType="DECIMAL" property="currentinterestnotpay" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    loanReceiptNo, idCard, loanDate, repayDate, interestDays, repayMentPeriod, currentRemainPrincipal, 
+    currentRepayPrincipal, currentInterestPayment, currentInterestPayed, currentInterestNotPay
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loanreceiptdetail
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKeyLoanReceiptDetail2" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_loanreceiptdetail
+    where loanReceiptNo like CONCAT('',#{loanreceiptno,jdbcType=VARCHAR},'%')
+    order by repayMentPeriod asc
+  </select>
+  <select id="selectByPrimaryKeyLoanReceiptDetail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_loanreceiptdetail
+    where loanReceiptNo like CONCAT('',#{loanreceiptno,jdbcType=VARCHAR},'%')
+    order by repayMentPeriod desc
+    limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_loanreceiptdetail
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.winter.model.LoanReceiptDetail">
+    insert into t_loanreceiptdetail (loanReceiptNo, idCard, loanDate, 
+      repayDate, interestDays, repayMentPeriod, 
+      currentRemainPrincipal, currentRepayPrincipal, 
+      currentInterestPayment, currentInterestPayed, 
+      currentInterestNotPay)
+    values (#{loanreceiptno,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{loandate,jdbcType=DATE}, 
+      #{repaydate,jdbcType=DATE}, #{interestdays,jdbcType=INTEGER}, #{repaymentperiod,jdbcType=INTEGER}, 
+      #{currentremainprincipal,jdbcType=DECIMAL}, #{currentrepayprincipal,jdbcType=DECIMAL}, 
+      #{currentinterestpayment,jdbcType=DECIMAL}, #{currentinterestpayed,jdbcType=DECIMAL}, 
+      #{currentinterestnotpay,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.winter.model.LoanReceiptDetail">
+    insert into t_loanreceiptdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanreceiptno != null">
+        loanReceiptNo,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+      <if test="loandate != null">
+        loanDate,
+      </if>
+      <if test="repaydate != null">
+        repayDate,
+      </if>
+      <if test="interestdays != null">
+        interestDays,
+      </if>
+      <if test="repaymentperiod != null">
+        repayMentPeriod,
+      </if>
+      <if test="currentremainprincipal != null">
+        currentRemainPrincipal,
+      </if>
+      <if test="currentrepayprincipal != null">
+        currentRepayPrincipal,
+      </if>
+      <if test="currentinterestpayment != null">
+        currentInterestPayment,
+      </if>
+      <if test="currentinterestpayed != null">
+        currentInterestPayed,
+      </if>
+      <if test="currentinterestnotpay != null">
+        currentInterestNotPay,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanreceiptno != null">
+        #{loanreceiptno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="loandate != null">
+        #{loandate,jdbcType=DATE},
+      </if>
+      <if test="repaydate != null">
+        #{repaydate,jdbcType=DATE},
+      </if>
+      <if test="interestdays != null">
+        #{interestdays,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentperiod != null">
+        #{repaymentperiod,jdbcType=INTEGER},
+      </if>
+      <if test="currentremainprincipal != null">
+        #{currentremainprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="currentrepayprincipal != null">
+        #{currentrepayprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="currentinterestpayment != null">
+        #{currentinterestpayment,jdbcType=DECIMAL},
+      </if>
+      <if test="currentinterestpayed != null">
+        #{currentinterestpayed,jdbcType=DECIMAL},
+      </if>
+      <if test="currentinterestnotpay != null">
+        #{currentinterestnotpay,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winter.model.LoanReceiptDetail">
+    update t_loanreceiptdetail
+    <set>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="loandate != null">
+        loanDate = #{loandate,jdbcType=DATE},
+      </if>
+      <if test="repaydate != null">
+        repayDate = #{repaydate,jdbcType=DATE},
+      </if>
+      <if test="interestdays != null">
+        interestDays = #{interestdays,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentperiod != null">
+        repayMentPeriod = #{repaymentperiod,jdbcType=INTEGER},
+      </if>
+      <if test="currentremainprincipal != null">
+        currentRemainPrincipal = #{currentremainprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="currentrepayprincipal != null">
+        currentRepayPrincipal = #{currentrepayprincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="currentinterestpayment != null">
+        currentInterestPayment = #{currentinterestpayment,jdbcType=DECIMAL},
+      </if>
+      <if test="currentinterestpayed != null">
+        currentInterestPayed = #{currentinterestpayed,jdbcType=DECIMAL},
+      </if>
+      <if test="currentinterestnotpay != null">
+        currentInterestNotPay = #{currentinterestnotpay,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winter.model.LoanReceiptDetail">
+    update t_loanreceiptdetail
+    set idCard = #{idcard,jdbcType=VARCHAR},
+      loanDate = #{loandate,jdbcType=DATE},
+      repayDate = #{repaydate,jdbcType=DATE},
+      interestDays = #{interestdays,jdbcType=INTEGER},
+      repayMentPeriod = #{repaymentperiod,jdbcType=INTEGER},
+      currentRemainPrincipal = #{currentremainprincipal,jdbcType=DECIMAL},
+      currentRepayPrincipal = #{currentrepayprincipal,jdbcType=DECIMAL},
+      currentInterestPayment = #{currentinterestpayment,jdbcType=DECIMAL},
+      currentInterestPayed = #{currentinterestpayed,jdbcType=DECIMAL},
+      currentInterestNotPay = #{currentinterestnotpay,jdbcType=DECIMAL}
+    where loanReceiptNo = #{loanreceiptno,jdbcType=VARCHAR}
+  </update>
+</mapper>

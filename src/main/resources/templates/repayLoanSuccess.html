@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>本次还款后该笔贷款的当前情况</title>
+</head>
+<body>
+<tr>贷款借据号:<td th:text="${loanReceipt.loanreceiptno}"></td></tr><br/>
+<tr>贷款序号:<td th:text="${loanReceipt.loanseq}"></td></tr><br/>
+<tr>身份证:<td th:text="${loanReceipt.idcard}"></td></tr><br/>
+<tr>借款日期:<td th:text="${loanReceipt.loandate}"></td></tr><br/>
+<tr>结清日期:<td th:text="${loanReceipt.cleardate}"></td></tr><br/>
+<tr>贷款日利率:<td th:text="${loanReceipt.dailyinterestrate}"></td></tr><br/>
+<tr>剩余本金总额:<td th:text="${loanReceipt.sumremainprincipal}"></td></tr><br/>
+<tr>尝还本金总额:<td th:text="${loanReceipt.sumrepayprincipal}"></td></tr><br/>
+<tr>应还利息总额:<td th:text="${loanReceipt.suminterestpayment}"></td></tr><br/>
+<tr>已还利息总额:<td th:text="${loanReceipt.suminterestpayed}"></td></tr><br/>
+<tr>未还利息总额:<td th:text="${loanReceipt.suminterestnotpay}"></td></tr><br/>
+<tr>贷款结清标志:<td th:text="${loanReceipt.loansettlesign}"></td></tr><br/>
+</body>
+</html>

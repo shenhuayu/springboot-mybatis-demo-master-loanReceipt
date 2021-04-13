@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>输入还款信息</title>
+</head>
+<body>
+<div>
+    <form method="post" th:object="${loanReceiptInput}" th:action="@{/user/idCardLoanReceiptShow}">
+        <p>身份证号:<input type="text" th:field="*{idcard}" id="idcard" name="idcard"/></p>
+        <p><input type="submit" value="提交"/></p>
+    </form>
+</div>
+</body>
+</html>

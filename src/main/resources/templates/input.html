@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>输入贷款信息</title>
+</head>
+<body>
+<div>
+    <form method="get" th:action="@{/user/input}">
+        <p>身份证:<input type="text" name="idCard"/></p>
+        <p>借款金额:<input type="text" name="loanAmt"/></p>
+        <p><input type="submit" value="提交"/></p>
+    </form>
+</div>
+</body>
+</html>
